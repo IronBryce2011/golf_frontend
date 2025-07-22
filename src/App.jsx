@@ -177,7 +177,7 @@ const FieldDay = () => {
   return (
     <div className="content">
       <h1>Welcome to Field Day</h1>
-      <h3>Please Fill This Out Whether You Plan To Attend Or Not</h3>
+      /* <h3>Please Fill This Out Whether You Plan To Attend Or Not</h3>
       <form>
         <label>
           First And Last Name:
@@ -190,7 +190,8 @@ const FieldDay = () => {
         </label>
         <br />
         <button className="submit-button" type="submit">Submit</button>
-      </form>
+      </form> */
+      <h2> Coming Soon!</h2>
     </div>
   );
 };
