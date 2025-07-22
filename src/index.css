@@ -1,0 +1,53 @@
+.homepage_title {
+  text-align: center;
+  color: white;
+  background-image: url("https://i.ibb.co/p6h29qqr/ghows-PA-ed1a0d8d-9e7e-4e48-8261-b7a0aaa18143-5a1f6290.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+padding: 50px;
+font-size: 80px;
+overflow: hidden;
+}
+.content {
+  padding: 20px;
+  background-color: darkgreen;
+  color: yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+gap: 20px;
+font-size: 35px;
+text-align: center;
+min-height: 100vh;
+}
+.content h2 {
+  font-size: 60px;
+}
+input, button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 5px solid yellow;
+  font-size: 16px;
+  text-align: center;
+}
+
+button {
+  background-color: darkgreen;
+  color: yellow;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: yellow;
+  color: darkgreen;
+}
+.submit-button {
+  width: auto;
+  padding: 10px 20px;
+  background-color: darkgreen;
+  color: yellow;
+  border: none;   
+}
