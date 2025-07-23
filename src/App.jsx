@@ -3,15 +3,19 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Scorecard from './scorecard.jsx';  
 
 function Leaderboard() {
-  const [score, setScore] = useState([]);
+  const [scores, setScores] = useState([]);
   const [week, setWeek] = useState("");
 
   useEffect(() => {
-    if (week !== "") {
+    if (week) {
       fetch(`http://localhost:3000/scores?week=${week}`)
-        .then(res => res.json())
-        .then(data => setScore(data))
-        .catch(err => console.error('Error fetching scores:', err));
+        .then((res) => res.json())
+        .then((data) => {
+          setScores(data); // Now a flat array directly
+        })
+        .catch((err) => {
+          console.error("Error fetching scores:", err);
+        });
     }
   }, [week]);
 
@@ -19,52 +23,46 @@ function Leaderboard() {
     <div>
       <h2>Leaderboard</h2>
       <label>
-        Select Week:
+        Select Week:{" "}
         <select value={week} onChange={(e) => setWeek(e.target.value)}>
           <option value="">-- Select a week --</option>
-<option value="1">Week 1</option>
-<option value="2">Week 2</option>
-<option value="3">Week 3</option>
-<option value="4">Week 4</option>
-<option value="5">Week 5</option>
-<option value="6">Week 6</option>
-<option value="7">Week 7</option>
-<option value="8">Week 8</option>
-<option value="9">Week 9</option>
-<option value="10">Week 10</option>
-<option value="11">Week 11</option>
-<option value="12">Week 12</option>
-<option value="13">Week 13</option>
-<option value="14">Week 14</option>
-<option value="15">Week 15</option>
-<option value="16">Week 16</option>
-<option value="17">Week 17</option>
-<option value="18">Week 18</option>
-<option value="19">Week 19</option>
-<option value="20">Week 20</option>
-<option value="21">Week 21</option>
-<option value="22">Week 22</option>
-          {/* Add more weeks as needed */}
+          {[...Array(22)].map((_, i) => (
+            <option key={i + 1} value={i + 1}>
+              Week {i + 1}
+            </option>
+          ))}
         </select>
       </label>
 
-      {week && score.length === 0 && <p>No scores for this week.</p>}
+      {week && scores.length === 0 && <p>No scores for Week {week}.</p>}
 
-      {week && score.length > 0 && (
-        <table border="1">
+      {week && scores.length > 0 && (
+        <table border="1" style={{ marginTop: '10px' }}>
           <thead>
             <tr>
-              <th>Player</th>
+              <th>Team</th>
               <th>Course</th>
-              <th>Score</th>
+              <th>Total Score</th>
+              {[...Array(9)].map((_, i) => (
+                <th key={i}>Hole {i + 1}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {score.map((score, index) => (
+            {scores.map((entry, index) => (
               <tr key={index}>
-                <td>{score.name}</td>
-                <td>{score.course}</td>
-                <td>{score.score}</td>
+                <td>{entry.team}</td>
+                <td>{entry.course}</td>
+                <td>{entry.score}</td>
+                <td>{entry.hole1}</td>
+                <td>{entry.hole2}</td>
+                <td>{entry.hole3}</td>
+                <td>{entry.hole4}</td>
+                <td>{entry.hole5}</td>
+                <td>{entry.hole6}</td>
+                <td>{entry.hole7}</td>
+                <td>{entry.hole8}</td>
+                <td>{entry.hole9}</td>
               </tr>
             ))}
           </tbody>
@@ -73,6 +71,8 @@ function Leaderboard() {
     </div>
   );
 }
+
+
 
 const Navbar = () => {
   return (
@@ -93,36 +93,6 @@ const Navbar = () => {
 };
 
 const Homepage = () => {
-  const [name, setName] = useState("");
-  const [course, setCourse] = useState("");
-  const [score, setScore] = useState("");
-  const [week, setWeek] = useState("");
-
-const handleSubmit = (e) => {
-  e.preventDefault();
-  console.log('score submitted')
-  fetch('http://localhost:3000/scores', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name,
-      course,
-      score: Number(score),
-      week: Number(week),
-    }),
-  })
-    .then(res => res.json())
-    .then(data => {
-      alert('Score submitted!');
-      setName('');
-      setCourse('');
-      setScore('');
-      setWeek('');
-    })
-    .catch(err => console.error('Error submitting score:', err));
-};
-
-
   return (
     <>
       <div className="homepage_title">
@@ -130,7 +100,9 @@ const handleSubmit = (e) => {
       </div>
       <div className="content">
         <h2>Welcome to the BDT Golf League</h2>
-        <Scorecard />
+        <div className="scorecard">
+          <Scorecard />
+        </div>
         <br />
         <Leaderboard />
         <p>
@@ -149,12 +121,11 @@ const handleSubmit = (e) => {
     </>
   );
 };
-
 const FieldDay = () => {
   return (
     <div className="content">
       <h1>Welcome to Field Day</h1>
-      {/* <h3>Please Fill This Out Whether You Plan To Attend Or Not</h3>
+      <h3>Please Fill This Out Whether You Plan To Attend Or Not</h3>
       <form>
         <label>
           First And Last Name:
@@ -167,8 +138,7 @@ const FieldDay = () => {
         </label>
         <br />
         <button className="submit-button" type="submit">Submit</button>
-      </form> */ }
-      <h2> Coming Soon!</h2>
+      </form>
     </div>
   );
 };
