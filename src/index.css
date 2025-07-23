@@ -23,6 +23,8 @@ text-align: center;
 min-height: 100vh;
   left: 0;
   right: 0;
+  align-content: center;
+  justify-items: center;
 }
 .content h2 {
   font-size: 2.5em;
