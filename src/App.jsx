@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Scorecard from './scorecard.jsx';  
 
 function Leaderboard() {
   const [score, setScore] = useState([]);
@@ -129,31 +130,7 @@ const handleSubmit = (e) => {
       </div>
       <div className="content">
         <h2>Welcome to the BDT Golf League</h2>
-        <form onSubmit={handleSubmit}>
-          <label>
-            First And Last Name:
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-          </label>
-<label>
-  Course: <br />
-  <select value={course} onChange={(e) => setCourse(e.target.value)} required>
-    <option value="">-- Select a course --</option>
-    <option value="North">North</option>
-    <option value="South">South</option>
-    <option value="West">West</option>
-  </select><br />
-</label>
-          <label>
-            Score:
-            <input type="number" value={score} onChange={(e) => setScore(e.target.value)} required />
-          </label>
-          <label>
-            Week Number:
-            <input type="number" value={week} onChange={(e) => setWeek(e.target.value)} required />
-          </label>
-          <br />
-          <button className="submit-button" type="submit">Submit</button>
-        </form>
+        <Scorecard />
         <br />
         <Leaderboard />
         <p>
