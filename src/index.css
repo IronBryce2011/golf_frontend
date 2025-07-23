@@ -55,3 +55,47 @@ button:hover {
   color: yellow;
   border: none;   
 }
+.scorecard {
+  max-width: 900px;
+  width: 95%;
+  margin: 1rem auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.scorecard input[type="text"],
+.scorecard input[type="number"],
+.scorecard select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  font-size: 1rem;
+}
+
+.scorecard table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.scorecard th,
+.scorecard td {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  .scorecard input[type="text"],
+  .scorecard input[type="number"],
+  .scorecard select {
+    font-size: 0.9rem;
+    padding: 4px 6px;
+  }
+
+  .scorecard th,
+  .scorecard td {
+    padding: 4px 6px;
+  }
+}
