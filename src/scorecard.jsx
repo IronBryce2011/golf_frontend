@@ -28,6 +28,7 @@ const Scorecard = () => {
   });
 };
   return (
+    <div className="scorecard">
     <form onSubmit={handleSubmit}>
       <div>
         <label>Week: </label>
@@ -86,6 +87,7 @@ const Scorecard = () => {
 </button>
 
     </form>
+      </div>
   );
 
 
